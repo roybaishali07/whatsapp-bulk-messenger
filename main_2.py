@@ -5,6 +5,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
 import time
 
 # Config
@@ -51,6 +52,8 @@ with open('numbers.txt', 'r') as file:
         link = f'https://web.whatsapp.com/send/?phone={country_code}{num}'
         driver.get(link)
         time.sleep(new_msg_time)
+        wait = WebDriverWait(driver, 10)
+        attach_btn = driver.find_element(By.CSS_SELECTOR, '._1OT67')
         # Click on button to load the input DOM
         attach_btn = driver.find_element(By.CSS_SELECTOR, '._1OT67')
         attach_btn.click()
